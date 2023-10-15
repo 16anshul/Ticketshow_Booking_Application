@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Admin Page</title>
+    <style>
+      body {
+        background-image: url("../static/images/bgimage2.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+      }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <h5 class="text-white">{{admin.name|title}}</h5>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/venuepage"><b>Venue</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><b>| Logout</b></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %} {% if 'error' in message %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h6>{{ message }}</h6>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endif %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <h6>{{ message }}</h6>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <h2 class="text-center">Ticket Show</h2>
+    {%if venue == []%}
+    <br /><br /><br /><br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div
+            class="card"
+            style="background-image: url(../static/images/bgimage1.png)"
+          >
+            <div class="card-body text-center">
+              <h5 class="card-title text-white font-weight-bold">
+                No venue and show created
+              </h5>
+              <div>
+                <a href="/createvenue">
+                  <button class="btn btn-warning btn-lg float-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="100"
+                      height="100"
+                      fill="currentColor"
+                      class="bi bi-plus"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                    <b class="text-danger">Add venue</b>
+                  </button></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%else%}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 mx-auto">
+          <div
+            class="card"
+            style="background-image: url(../static/images/bgimage1.png)"
+          >
+            <div>
+              <a href="/venuepage"
+                ><button class="btn btn-warning btn-lg float-center">
+                  <b>Go to venue Page</b>
+                </button></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endif%}
+  </body>
+</html>
